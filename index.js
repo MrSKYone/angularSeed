@@ -26,42 +26,9 @@ var storageMood = multer.diskStorage({
 
 var upload = multer({ storage: storageMood });
 
-var storageUser = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './upload/users/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname.replace(/ /g, '_'))
-  }
-})
-
-var uploadUser = multer({ storage: storageUser });
-
-var storagePlace = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './upload/places/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname.replace(/ /g, '_'))
-  }
-})
-
-var uploadPlace = multer({ storage: storagePlace });
-
-var storageParcour = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './upload/parcours/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname.replace(/ /g, '_'))
-  }
-})
-
-var uploadParcour = multer({ storage: storageParcour });
-
 
 // configuration =================
-mongoose.connect('mongodb://localhost:27017/test');     
+//mongoose.connect('mongodb://localhost:27017/test');     
 // connect to mongoDB database
 //mongoose.connect('mongodb://preview.w0jghuyc4gh6ko6rav29qnoke7y14izmkvsxjurjzqto6r.box.codeanywhere.com:27017/test');     
 
@@ -82,31 +49,8 @@ app.use('/upload', express.static(__dirname + '/upload'));
 
 // routes ======================================================================
 require('./app-data/routes.js')(app);
-// webhooks ====================================================================
-require('./app-data/webhooks.js')(app);
 
 app.post('/upload/mood', upload.array('images'), function (req, res, next) {
-  // req.file is the `avatar` file
-  console.log(req.files);
-  // req.body will hold the text fields, if there were any
-  res.json({status: 'success', files: req.files});
-})
-
-app.post('/upload/user', uploadUser.array('images'), function (req, res, next) {
-  // req.file is the `avatar` file
-  console.log(req.files);
-  // req.body will hold the text fields, if there were any
-  res.json({status: 'success', files: req.files});
-})
-
-app.post('/upload/place', uploadPlace.array('images'), function (req, res, next) {
-  // req.file is the `avatar` file
-  console.log(req.files);
-  // req.body will hold the text fields, if there were any
-  res.json({status: 'success', files: req.files});
-})
-
-app.post('/upload/parcour', uploadParcour.array('images'), function (req, res, next) {
   // req.file is the `avatar` file
   console.log(req.files);
   // req.body will hold the text fields, if there were any
@@ -136,7 +80,7 @@ app.post('/download', function (req, res) {
   res.send('data downloaded');
 })
 
-app.listen(8000, function(){
+app.listen(8888, function(){
     console.log("Server is listening on port 8888");
 });
 
