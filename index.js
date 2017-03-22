@@ -28,7 +28,7 @@ var upload = multer({ storage: storageMood });
 
 
 // configuration =================
-//mongoose.connect('mongodb://localhost:27017/test');     
+// mongoose.connect('mongodb://localhost:27017/test');     
 // connect to mongoDB database
 //mongoose.connect('mongodb://preview.w0jghuyc4gh6ko6rav29qnoke7y14izmkvsxjurjzqto6r.box.codeanywhere.com:27017/test');     
 
